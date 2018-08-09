@@ -1,5 +1,8 @@
 ﻿namespace UniqueWindowDemo
 {
+    /// <summary>
+    /// The unique window view.
+    /// </summary>
     class UniqueWindowView: Gtk.Window
     {
         public UniqueWindowView()
@@ -8,15 +11,18 @@
             this.Build();
         }
         
+        /// <summary>
+        /// Build the widgets in this window.
+        /// </summary>
         void Build()
         {
             var vbMainBox = new Gtk.VBox();
         
-            this.vbLoginPage = this.BuildLoginPage();
-            this.vbNotebook = this.BuildNotebook();
+            this.VbLoginPage = this.BuildLoginPage();
+            this.VbNotebook = this.BuildNotebookPage();
         
-            vbMainBox.PackStart( this.vbLoginPage, true, true, 100 );
-            vbMainBox.PackStart( this.vbNotebook, true, true, 5 );
+            vbMainBox.PackStart( this.VbLoginPage, true, true, 100 );
+            vbMainBox.PackStart( this.VbNotebook, true, true, 5 );
             vbMainBox.Show();
             
             this.Add( vbMainBox );
@@ -25,6 +31,10 @@
             this.Show();
         }
         
+        /// <summary>
+        /// Builds the login page.
+        /// </summary>
+        /// <returns>The login page, as a Gtk.VBox</returns>
         Gtk.VBox BuildLoginPage()
         {
             var toret = new Gtk.VBox();
@@ -36,8 +46,8 @@
             var lblUsr = new Gtk.Label( "User" );
             var lblPsw = new Gtk.Label( "Password" );
             
-            this.btLogin = new Gtk.Button( "Login" );
-            hbLogin.PackEnd( btLogin, false, false, 5 );
+            this.BtLogin = new Gtk.Button( "Login" );
+            hbLogin.PackEnd( BtLogin, false, false, 5 );
                         
             hbUsr.PackStart( lblUsr, false, false, 5 );
             hbUsr.PackStart( edUsr, true, true, 5 );
@@ -53,38 +63,46 @@
             return toret;
         }
         
-        Gtk.VBox BuildNotebook()
+        /// <summary>
+        /// Builds the notebook page.
+        /// </summary>
+        /// <returns>The notebook page, as a Gtk.VBox.</returns>
+        Gtk.VBox BuildNotebookPage()
         {
-            var lblButton1 = new Gtk.Label( "Button1" );
-            var lblButton2 = new Gtk.Label( "Button2" );
+            var lblButton1 = new Gtk.Label( "Page 1" );
+            var lblButton2 = new Gtk.Label( "Page 2" );
             
-            this.nbNotebook = new Gtk.Notebook();
-            this.nbNotebook.AppendPage( lblButton1, new Gtk.Label( "Tab1" ) );
-            this.nbNotebook.AppendPage( lblButton2, new Gtk.Label( "Tab2" ) );
+            this.NbNotebook = new Gtk.Notebook();
+            this.NbNotebook.AppendPage( lblButton1, new Gtk.Label( "Tab 1" ) );
+            this.NbNotebook.AppendPage( lblButton2, new Gtk.Label( "Tab 2" ) );
             
-            this.nbNotebook.ShowAll();
-            this.nbNotebook.TabPos = Gtk.PositionType.Right;
+            this.NbNotebook.ShowAll();
+            this.NbNotebook.TabPos = Gtk.PositionType.Right;
             
             var toret = new Gtk.VBox( true, 5 );
-            toret.PackStart( this.nbNotebook );
+            toret.PackStart( this.NbNotebook );
             toret.ShowAll();
             
             return toret;
         }
         
-        public Gtk.VBox vbLoginPage {
+        /// <summary>The VBox for the login page.</summary>
+        public Gtk.VBox VbLoginPage {
             get; private set;
         }
-        
-        public Gtk.VBox vbNotebook {
+
+        /// <summary>The VBox for the notebook page.</summary>        
+        public Gtk.VBox VbNotebook {
             get; private set;
         }
             
-        public Gtk.Notebook nbNotebook {
+        /// <summary>The notebook for the second page, as a Gtk.Notebook.</summary>
+        public Gtk.Notebook NbNotebook {
             get; private set;
         }
         
-        public Gtk.Button btLogin {
+        /// <summary>The Gtk.Button triggering the login.</summary>
+        public Gtk.Button BtLogin {
             get; private set;
         }
     }
